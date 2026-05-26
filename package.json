@@ -1,0 +1,48 @@
+{
+  "name": "pomodoro-timer",
+  "productName": "Pomodoro Timer",
+  "version": "1.0.0",
+  "description": "A lightweight Windows desktop Pomodoro timer with configurable work/break durations, desktop notifications, and local task labeling.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "test": "node test/smoke.test.js",
+    "lint": "eslint main.js src/",
+    "pack": "electron-builder --win portable",
+    "dist": "electron-builder --win"
+  },
+  "build": {
+    "appId": "com.pomodoro.timer",
+    "productName": "Pomodoro Timer",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "portable"
+      ]
+    },
+    "portable": {
+      "artifactName": "PomodoroTimer-${version}-portable.exe"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**"
+    ]
+  },
+  "keywords": [
+    "pomodoro",
+    "timer",
+    "electron",
+    "windows"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "electron": "^36.4.0",
+    "electron-builder": "^26.0.12",
+    "eslint": "^9.28.0"
+  }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro Timer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="titlebar">
+    <span id="titlebar-text">Pomodoro</span>
+    <div id="titlebar-controls">
+      <button id="btn-minimize" class="titlebar-btn" aria-label="Minimize">&#x2500;</button>
+      <button id="btn-maximize" class="titlebar-btn" aria-label="Maximize">&#x25A1;</button>
+      <button id="btn-close" class="titlebar-btn titlebar-btn-close" aria-label="Close">&#x2715;</button>
+    </div>
+  </div>
+  <div id="app">
+    <h1 id="phase-label">Work</h1>
+    <div id="timer-display">25:00</div>
+
+    <div id="task-section">
+      <label for="task-input">Task</label>
+      <input id="task-input" type="text" placeholder="What are you working on?" maxlength="100">
+    </div>
+
+    <div id="controls">
+      <button id="btn-start">Start</button>
+      <button id="btn-pause" disabled>Pause</button>
+      <button id="btn-reset">Reset</button>
+    </div>
+
+    <div id="settings">
+      <label>Work <input id="work-min" type="number" min="1" max="120" value="25"> min</label>
+      <label>Break <input id="break-min" type="number" min="1" max="60" value="5"> min</label>
+    </div>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>
