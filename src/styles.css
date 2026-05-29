@@ -11,7 +11,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  overflow: hidden;
+  overflow-y: auto;
   user-select: none;
 }
 
@@ -70,7 +70,7 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 #phase-label {
@@ -93,7 +93,7 @@ body {
 }
 
 #task-section {
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 #task-section label {
@@ -116,6 +116,33 @@ body {
 }
 
 #task-input:focus {
+  border-color: #e94560;
+}
+
+#note-section {
+  margin-bottom: 20px;
+}
+
+#note-section label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+  color: #aaa;
+}
+
+#note-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background: #16213e;
+  color: #eee;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#note-input:focus {
   border-color: #e94560;
 }
 
@@ -197,7 +224,90 @@ button:active {
 }
 
 .running #settings input,
-.running #task-input {
+.running #task-input,
+.running #note-input {
   opacity: 0.4;
   pointer-events: none;
+}
+
+#cycle-log {
+  margin-top: 20px;
+  text-align: left;
+}
+
+#cycle-log-heading {
+  font-size: 14px;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+#cycle-count {
+  background: #e94560;
+  color: #fff;
+  font-size: 12px;
+  padding: 1px 8px;
+  border-radius: 10px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+#cycle-log-list {
+  list-style: none;
+  padding: 0;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+#cycle-log-list li {
+  padding: 6px 10px;
+  font-size: 13px;
+  color: #ccc;
+  border-bottom: 1px solid #222;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px;
+}
+
+#cycle-log-list li:last-child {
+  border-bottom: none;
+}
+
+.cycle-main {
+  flex: 1 1 auto;
+}
+
+.cycle-note {
+  width: 100%;
+  font-size: 12px;
+  color: #999;
+  font-style: italic;
+}
+
+.cycle-note-edit {
+  padding: 0;
+  font-size: 12px;
+  background: transparent;
+  color: #666;
+  line-height: 1;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.cycle-note-edit:hover {
+  color: #e94560;
+}
+
+.cycle-note-input {
+  width: 100%;
+  padding: 4px 8px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #16213e;
+  color: #eee;
+  font-size: 13px;
+  outline: none;
+  flex: 1 1 100%;
 }

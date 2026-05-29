@@ -6,9 +6,11 @@ const DATA_FILE = path.join(app.getPath('userData'), 'pomodoro-data.json');
 
 function readData() {
   try {
-    return JSON.parse(fs.readFileSync(DATA_FILE, 'utf-8'));
+    const data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf-8'));
+    if (!Array.isArray(data.cycles)) data.cycles = [];
+    return data;
   } catch {
-    return { taskLabel: '', workMinutes: 25, breakMinutes: 5 };
+    return { taskLabel: '', workMinutes: 25, breakMinutes: 5, cycles: [] };
   }
 }
 
@@ -21,7 +23,7 @@ let mainWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 400,
-    height: 560,
+    height: 680,
     minWidth: 320,
     minHeight: 400,
     frame: false,
@@ -52,6 +54,28 @@ ipcMain.handle('read-data', () => readData());
 
 ipcMain.handle('write-data', (_event, data) => {
   writeData(data);
+});
+
+ipcMain.handle('log-cycle', (_event, cycle) => {
+  const data = readData();
+  data.cycles.push(cycle);
+  writeData(data);
+  return data.cycles;
+});
+
+ipcMain.handle('update-cycle-note', (_event, completedAt, note) => {
+  const data = readData();
+  const cycle = data.cycles.find((c) => c.completedAt === completedAt);
+  if (cycle) {
+    cycle.note = note;
+    writeData(data);
+  }
+  return data.cycles;
+});
+
+ipcMain.handle('read-cycles', () => {
+  const data = readData();
+  return data.cycles;
 });
 
 ipcMain.handle('notify', (_event, { title, body }) => {

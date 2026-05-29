@@ -24,6 +24,11 @@
       <input id="task-input" type="text" placeholder="What are you working on?" maxlength="100">
     </div>
 
+    <div id="note-section">
+      <label for="note-input">Note</label>
+      <input id="note-input" type="text" placeholder="Quick note for this cycle…" maxlength="200">
+    </div>
+
     <div id="controls">
       <button id="btn-start">Start</button>
       <button id="btn-pause" disabled>Pause</button>
@@ -33,6 +38,11 @@
     <div id="settings">
       <label>Work <input id="work-min" type="number" min="1" max="120" value="25"> min</label>
       <label>Break <input id="break-min" type="number" min="1" max="60" value="5"> min</label>
+    </div>
+
+    <div id="cycle-log">
+      <h2 id="cycle-log-heading">Today <span id="cycle-count">0</span></h2>
+      <ul id="cycle-log-list"></ul>
     </div>
   </div>
   <script src="renderer.js"></script>
